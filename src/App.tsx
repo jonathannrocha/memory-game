@@ -23,13 +23,16 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (playing) setTimeElapsed(timeElapsed + 1);
+      if (playing) {
+        setTimeElapsed(timeElapsed + 1);
+      }
     }, 1000);
     return () => clearInterval(timer);
   }, [playing, timeElapsed]);
 
   useEffect(() => {
     if (showCount === 2) {
+      setMoveCount((moveCount) => moveCount + 1);
       const opened = gridItens.filter((grid) => grid.show);
 
       if (opened.length === 2) {
@@ -57,11 +60,17 @@ function App() {
             setShowCount(0);
           }, 500);
         }
-
-        setMoveCount(moveCount + 1);
       }
     }
   }, [gridItens, showCount]);
+
+  useEffect(() => {
+    console.log("fm");
+    if (moveCount > 0 && gridItens.every((i) => i.permanentShow)) {
+      console.log("fm");
+      setPlaying(false);
+    }
+  }, [moveCount, gridItens]);
 
   function resetAndCreateGrid() {
     setTimeElapsed(0);
@@ -108,7 +117,7 @@ function App() {
 
         <C.infoArea>
           <InfoItem label="Tempo" value={formatTimer(timeElapsed)} />
-          <InfoItem label="Movimentos" value={"0"} />
+          <InfoItem label="Movimentos" value={moveCount.toString()} />
         </C.infoArea>
 
         <Button

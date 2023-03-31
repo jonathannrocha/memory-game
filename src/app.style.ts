@@ -7,7 +7,8 @@ export const Contanier = styled.div`
   display: flex;
   padding: 50px 0;
 
-  @media (max-width: 750) {
+  @media (max-width: 750px) {
+    align-items: center;
     flex-direction: column;
   }
 `;
@@ -16,7 +17,7 @@ export const info = styled.div`
   flex-direction: column;
   width: auto;
 
-  @media (max-width: 750) {
+  @media (max-width: 750px) {
     margin-bottom: 50px;
     align-items: center;
   }
@@ -53,4 +54,11 @@ export const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+
+  @media (max-width: 450px) {
+    width: 290px;
+    padding: 10px;
+    gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
